@@ -8,6 +8,7 @@
     <title>Addressbook Practice</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript" src="../js/form.js"></script>
 </head>
 <style>
 
@@ -39,11 +40,12 @@
             <div class="body">
                 <label class="label text" for="name">Full Name</label></br>
                 <input class="input" type="text" id="name" name="name" placeholder="Enter your name here" required>
-                <error-output class="text-error "></error-output>
+                <error-output class="text-error" for="name"></error-output>
 
 
                 <label class="label text" for="address">Address</label></br>
                 <textarea id="address" class="input" name="address" placeholder="Enter your address here" style="height: 100px; "></textarea>
+                <error-output class="address-error" for="address"></error-output>
 
                 <div class="row-content">
                     <div class="label-city">
@@ -75,13 +77,8 @@
                 </div>
 
                 <label class="label-text-phone" for="phone">Phone Number</label></br>
-                <input class="input" type="tel" id="phone" name="phone" placeholder="Enter your phone number here" required>
+                <input class="input" type="number" id="phone" name="phone" placeholder="Enter your phone number here" required>
                 <error-output class="phone-error"></error-output>
-
-                <div class="add-reset">
-                    <button type="add" class="addButton" id="addButton">Add</button>
-                    <button type="reset" class="resetButton">Reset</button>
-                </div>
             </div>
 
         </form>
