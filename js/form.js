@@ -1,51 +1,117 @@
-//UC => 4 Added form validations
+let addressBookObject = {};
+let isUpdate = false;
 window.addEventListener('DOMContentLoaded', (event) => {
-    validatingInputs();
+    validateName();
+    validatePhone();
+    validateAddress();
 })
 
-function validatingInputs() {
+function validateName() {
     const name = document.querySelector('#name');
-    const phone = document.querySelector('#phone');
-    const address = document.querySelector('#address');
-    const nameError = document.querySelector('.text-error');
-    const phoneError = document.querySelector('.phone-error');
-    const addressError = document.querySelector('.address-error');
-
+    const textError = document.querySelector('.text-error');
     name.addEventListener('input', function() {
-        const nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
-        if (nameRegex.test(name.value)) {
-            nameError.textContent = "";
-        } else {
-            nameError.textContent = "1)First letter must be in uppercase." +
-                "\n2)Minimum 3 characters";
+        try {
+            let personData = new AddressBookApp();
+            personData.name = name.value;
+            textError.textContent = "";
+        } catch (e) {
+            textError.textContent = e;
         }
     });
+}
 
+function validatePhone() {
+    const phone = document.querySelector('#phone');
+    const phoneError = document.querySelector('.phone-error');
     phone.addEventListener('input', function() {
-        const phoneRegex = RegExp('^[+][1-9]{2}[-][0-9]{10}$');
-        if (phoneRegex.test(phone.value)) {
+        try {
+            let personData = new AddressBookApp();
+            personData.phone = phone.value;
             phoneError.textContent = "";
-        } else {
-            phoneError.textContent = "1)Phone number should be starts with country code" +
-                "\n2)Phone number must be have 10 digits (Ex:+91-1234567890)";
+        } catch (e) {
+            phoneError.textContent = e;
         }
     });
+}
 
+function validateAddress() {
+    const address = document.querySelector('#address');
+    const addressError = document.querySelector('.address-error');
     address.addEventListener('input', function() {
-        const addressRegex = RegExp('^[a-zA-Z0-9\s,.-: ]{3,}$');
-        if (addressRegex.test(address.value)) {
+        try {
+            let personData = new AddressBookApp();
+            personData.address = address.value;
             addressError.textContent = "";
-        } else {
-            addressError.textContent = "Sorry entered address is incorrect";
+        } catch (e) {
+            addressError.textContent = e;
         }
     });
 }
 
-//Declaring save and reset method
-const save = () => {
-    alert("Save button");
+const save = (event) => {
+    try {
+        event.preventDefault();
+        event.stopPropagation();
+        let personAddressBook = setAddressBookObject();
+        console.log(personAddressBook);
+        createAndUpdateStorage(personAddressBook);
+        alert("Data Stored With Name: " + personAddressBook._name);
+        window.location.replace(Site_Properties.home);
+    } catch (e) {
+        console.log(e)
+    }
 }
 
-const reset = () => {
-    alert("Reset button");
+const setAddressBookObject = () => {
+    let addressBookApp = new AddressBookApp();
+
+    addressBookApp.name = getInputValueId('#name');
+    addressBookApp.phone = getInputValueId('#phone')
+    addressBookApp.address = getInputValueId('#address')
+    addressBookApp.city = getInputValueId('#city')
+    addressBookApp.state = getInputValueId('#state');
+    addressBookApp.zipcode = getInputValueId('#zipcode');
+    addressBookApp.id = addressBookObject._id;
+    return addressBookApp;
+}
+
+const createAndUpdateStorage = (personData) => {
+    let dataList = JSON.parse(localStorage.getItem("AddressBookList"));
+    if (dataList) {
+        let existingEmpData = dataList.find(data => data._id == personData.id);
+        if (!existingEmpData) {
+            personData.id = createNewBookId();
+            dataList.push(personData);
+        } else {
+            const index = dataList.map(emp => emp._id).indexOf(personData.id);
+            dataList.splice(index, 1, personData);
+        }
+    } else {
+        personData.id = createNewBookId();
+        dataList = [personData];
+    }
+    localStorage.setItem('AddressBookList', JSON.stringify(dataList));
+}
+
+const getInputValueId = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
+
+const getSelectedValue = (propertyValue) => {
+    let allItem = document.querySelectorAll(propertyValue);
+    let setItem = [];
+    allItem.forEach(item => {
+        if (item.checked == true) {
+            setItem.push(item.value);
+        }
+    })
+    return setItem;
+}
+
+const createNewBookId = () => {
+    let bookId = localStorage.getItem('BookId');
+    bookId = !bookId ? 1 : (parseInt(bookId) + 1).toString();
+    localStorage.setItem('BookId', bookId);
+    return bookId;
 }

@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="../css/style.css">
     <script type="text/javascript" src="../js/form.js"></script>
+    <script type="text/javascript" src="../js/AddressBookApp.js"></script>
+    <script type="text/javascript" src="../js/Site_Properties.js"></script>
+    <script type="text/javascript" src="../js/home.js"></script>
 </head>
 <style>
 
@@ -28,7 +31,7 @@
 
     <!-- UC2 Ability to add Form Header-->
     <div class="form-content">
-        <form class="form" action="#" onsubmit="save();" onreset="reset();">
+        <form class="form" action="#" onsubmit="save(event)" onreset="reset()">
             <div class="form-head">
                 <span class="form-head-text">PERSON ADDRESS FORM</span>
                 <span class="cross-icon">
@@ -47,20 +50,20 @@
                 <error-output class="phone-error"></error-output>
 
                 <label class="label text" for="address">Address</label></br>&nbsp;
-                <textarea id="address" class="input" name="address" placeholder="Enter your address here" style="height: 100px; "></textarea>
+                <textarea id="address" class="input" name="address" placeholder="Enter your address here" style="height: 100px;"></textarea>
                 <error-output class="address-error"></error-output>
 
                 <div class="row-content">
                     <div class="label-city">
                         <label class="city" for="city">City</label><br>&nbsp;
                         <select id="city" name="city">
-                        <option value="0">Select City</option>
-                        <option value="1 ">Ambala</option>
-                        <option value="2 ">Gurgaon</option>
-                        <option value="3 ">Noida</option>
-                        <option value="4 ">Shimla</option>
-                        <option value="5 ">Chennai</option>  
-                    </select>
+                            <option value="0">Select City</option>
+                            <option value="Ambala">Ambala</option>
+                            <option value="Gurgaon">Gurgaon</option>
+                            <option value="Noida">Noida</option>
+                            <option value="Shimla">Shimla</option>
+                            <option value="Chennai">Chennai</option>  
+                        </select>
                     </div>
                     <div class="label-state">
                         <label class="state" for="state">State</label><br>&nbsp;
@@ -75,17 +78,17 @@
                     </div>
                     <div class="label-zip">
                         <label class="zip" for="zipcode">Zipcode</label></br>&nbsp;
-                        <input class="input" id="zipcode " name="zipcode" placeholder="Enter zipcode here"></input>
+                        <input class="input" id="zipcode" name="zipcode" placeholder="Enter zipcode here"></input>
                     </div>
                 </div>
 
                 <!-- UC5 Add submit and reset button at the end of the form-->
                 <div class="add-reset">
-                    <button type="add" class="addButton" id="addButton">Submit</button>
+                    <a href="./Home_Page.html"></a>
+                    <button type="submit" class="addButton" id="addButton">Submit</button>
                     <button type="reset" class="resetButton" id="resetButton">Reset</button>
                 </div>
             </div>
-
         </form>
     </div>
 

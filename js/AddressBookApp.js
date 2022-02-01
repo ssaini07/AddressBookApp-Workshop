@@ -13,11 +13,10 @@ class AddressBookApp {
     }
     set name(name) {
         const nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
-        if (nameRegex.test(name.value)) {
+        if (nameRegex.test(name)) {
             this._name = name;
         } else {
-            throw "1)First letter must be in uppercase." +
-                "\n2)Minimum 3 characters";
+            throw "First letter must be in uppercase and min 3 character long";
         }
     }
 
@@ -27,11 +26,10 @@ class AddressBookApp {
     }
     set phone(phone) {
         const phoneRegex = RegExp('^[+][1-9]{2}[-][0-9]{10}$');
-        if (phoneRegex.test(phone.value)) {
+        if (phoneRegex.test(phone)) {
             this._phone = phone;
         } else {
-            throw "1)Phone number should be starts with country code" +
-                "\n2)Phone number must be have 10 digits (Ex:+91-1234567890)";
+            throw "Phone number should be (Ex:+91-1234567890)";
         }
     }
 
@@ -41,7 +39,7 @@ class AddressBookApp {
     }
     set address(address) {
         const addressRegex = RegExp('^([A-Za-z0-9/.,-]{3,}.)+$');
-        if (addressRegex.test(address.value)) {
+        if (addressRegex.test(address)) {
             this._address = address;
         } else {
             throw "Sorry entered address is incorrect";
