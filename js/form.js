@@ -16,16 +16,18 @@ function validatingInputs() {
         if (nameRegex.test(name.value)) {
             nameError.textContent = "";
         } else {
-            nameError.textContent = "Name is incorrect";
+            nameError.textContent = "1)First letter must be in uppercase." +
+                "\n2)Minimum 3 characters";
         }
     });
 
     phone.addEventListener('input', function() {
-        const phoneRegex = RegExp('^[0-9]{10}$');
+        const phoneRegex = RegExp('^[+][1-9]{2}[-][0-9]{10}$');
         if (phoneRegex.test(phone.value)) {
             phoneError.textContent = "";
         } else {
-            phoneError.textContent = "Phone number is incorrect";
+            phoneError.textContent = "1)Phone number should be starts with country code" +
+                "\n2)Phone number must be have 10 digits (Ex:+91-1234567890)";
         }
     });
 
@@ -34,7 +36,7 @@ function validatingInputs() {
         if (addressRegex.test(address.value)) {
             addressError.textContent = "";
         } else {
-            addressError.textContent = "Address is incorrect";
+            addressError.textContent = "Sorry entered address is incorrect";
         }
     });
 }
