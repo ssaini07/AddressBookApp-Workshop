@@ -11,7 +11,6 @@
     <script type="text/javascript" src="../js/form.js"></script>
     <script type="text/javascript" src="../js/AddressBookApp.js"></script>
     <script type="text/javascript" src="../js/Site_Properties.js"></script>
-    <script type="text/javascript" src="../js/home.js"></script>
 </head>
 <style>
 
@@ -31,11 +30,11 @@
 
     <!-- UC2 Ability to add Form Header-->
     <div class="form-content">
-        <form class="form" action="#" onsubmit="save(event)" onreset="reset()">
+        <form class="form" action="#" onsubmit="save(event);" id="resetForm">
             <div class="form-head">
                 <span class="form-head-text">PERSON ADDRESS FORM</span>
                 <span class="cross-icon">
-                    <ion-icon class="close-circle" name="close-circle"></ion-icon>
+                    <ion-icon class="close-circle" name="close-circle" onclick="cancel();"></ion-icon>
                 </span>
             </div>
 
@@ -50,7 +49,7 @@
                 <error-output class="phone-error"></error-output>
 
                 <label class="label text" for="address">Address</label></br>&nbsp;
-                <textarea id="address" class="input" name="address" placeholder="Enter your address here" style="height: 100px;"></textarea>
+                <textarea id="address" class="input" name="address" placeholder="Enter your address here" style="height: 100px;" rows="5"></textarea>
                 <error-output class="address-error"></error-output>
 
                 <div class="row-content">
@@ -86,7 +85,7 @@
                 <div class="add-reset">
                     <a href="./Home_Page.html"></a>
                     <button type="submit" class="addButton" id="addButton">Submit</button>
-                    <button type="reset" class="resetButton" id="resetButton">Reset</button>
+                    <button type="reset" class="resetButton" id="resetButton" onclick="resetTheForm()">Reset</button>
                 </div>
             </div>
         </form>

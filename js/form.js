@@ -56,7 +56,7 @@ const save = (event) => {
         console.log(personAddressBook);
         createAndUpdateStorage(personAddressBook);
         alert("Data Stored With Name: " + personAddressBook._name);
-        window.location.replace(Site_Properties.home);
+        //window.location.replace(Site_Properties.home);
     } catch (e) {
         console.log(e)
     }
@@ -114,4 +114,34 @@ const createNewBookId = () => {
     bookId = !bookId ? 1 : (parseInt(bookId) + 1).toString();
     localStorage.setItem('BookId', bookId);
     return bookId;
+}
+
+// UC => 9
+//On cancel redirect to home page
+const cancel = () => {
+    window.location.replace(Site_Properties.home);
+}
+
+//Reset the values
+function resetTheForm() {
+    const resetForm = () => {
+        setTextValue('#name', '');
+        setTextValue('#phone', '');
+        setValue('#address', '');
+        setTextValue('#ciy', '');
+        setTextValue('#state', '');
+        setTextValue('#zipcode', '');
+    }
+
+    const setTextValue = (id, message) => {
+        const textError = document.querySelector(id);
+        textError.textContent = message;
+    }
+
+    const setValue = (id, value) => {
+        let element = document.querySelector(id);
+        element.value = value;
+    }
+    console.log(resetForm);
+    alert("Data has been reset now")
 }
