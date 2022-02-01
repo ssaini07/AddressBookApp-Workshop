@@ -1,8 +1,6 @@
 //UC => 4 Added form validations
 window.addEventListener('DOMContentLoaded', (event) => {
     validatingInputs();
-    callBackFunction();
-    callBackResetFunction();
 })
 
 function validatingInputs() {
@@ -41,19 +39,11 @@ function validatingInputs() {
     });
 }
 
-//UC => 5 Make sure to set a call back function when onsubmit 
-//and onreset event is fired when user clicks on this button
-
-function callBackSubmitFunction() {
-    document.queryselector("#addButton")
-        .addEventListener("click", function() {
-            console.log("User has clicked on the submit button!");
-        });
+//Declaring save and reset method
+const save = () => {
+    alert("Save button");
 }
 
-function callBackResetFunction() {
-    document.queryselector("#resetButton")
-        .addEventListener("click", function() {
-            console.log("User has clicked on the reset button!");
-        });
+const reset = () => {
+    alert("Reset button");
 }
