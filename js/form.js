@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     validateName();
     validatePhone();
     validateAddress();
+    checkForUpdate();
 })
 
 function validateName() {
@@ -144,4 +145,28 @@ function resetTheForm() {
         }
         //console.log(resetForm);
     alert("Data has been reset now")
+}
+
+//Section: 2 UC => 6 Ability to update address book contact details.
+const checkForUpdate = () => {
+    let jsonData = localStorage.getItem('edit-person');
+    isUpdate = jsonData ? true : false;
+    if (!isUpdate)
+        return;
+    addressBookObject = JSON.parse(jsonData);
+    setForm();
+}
+
+const setForm = () => {
+    setValue('#name', addressBookObject._name);
+    setValue('#phone', addressBookObject._phone);
+    setValue('#address', addressBookObject._address);
+    setValue('#city', addressBookObject._city);
+    setValue('#state', addressBookObject._state);
+    setValue('#zipcode', addressBookObject._zipcode);
+}
+
+const setValue = (id, value) => {
+    let element = document.querySelector(id);
+    element.value = value;
 }

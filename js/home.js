@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     addressBookList = getAddressBookDataFromStorage();
     document.querySelector(".person-count").textContent = addressBookList.length;
     createInnerHTML();
-    //localStorage.removeItem("edit-person");
+    localStorage.removeItem("edit-person");
     remove();
 });
 
@@ -37,7 +37,7 @@ const createInnerHTML = () => {
     <td>${addressBookData._state}</td>
     <td>${addressBookData._zipcode}</td>
     <td>
-    <img alt="edit" src="../assets/icons/create-black-18dp.svg">
+    <img id="${addressBookData._id}" alt="edit" src="../assets/icons/create-black-18dp.svg" onClick=update(this)>
     <img id="${addressBookData._id}" alt="delete" src="../assets/icons/delete-black-18dp.svg" onClick=remove(this)>
     </td>
 </tr> 
@@ -56,4 +56,13 @@ const remove = (data) => {
     localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
     document.querySelector('.person-count').textContent = addressBookList.length;
     createInnerHTML();
+}
+
+//Section: 2 UC => 6 Ability to update address book contact details.
+const update = (data) => {
+    let addBookData = addressBookList.find(personData => personData._id == data.id);
+    if (!addBookData)
+        return;
+    localStorage.setItem('edit-person', JSON.stringify(addBookData));
+    window.location.replace(Site_Properties.addPerson);
 }
