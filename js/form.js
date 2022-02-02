@@ -139,9 +139,9 @@ function resetTheForm() {
     }
 
     const setValue = (id, value) => {
-        let element = document.querySelector(id);
-        element.value = value;
-    }
-    console.log(resetForm);
+            let element = document.querySelector(id);
+            element.value = value;
+        }
+        //console.log(resetForm);
     alert("Data has been reset now")
 }
