@@ -56,7 +56,7 @@ const save = (event) => {
         console.log(personAddressBook);
         createAndUpdateStorage(personAddressBook);
         alert("Data Stored With Name: " + personAddressBook._name);
-        //window.location.replace(Site_Properties.home);
+        window.location.replace(Site_Properties.home);
     } catch (e) {
         console.log(e)
     }
