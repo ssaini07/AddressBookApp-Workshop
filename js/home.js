@@ -1,7 +1,7 @@
 let addressBookList;
 window.addEventListener('DOMContentLoaded', (event) => {
     addressBookList = getAddressBookDataFromStorage();
-    //document.querySelector(".person-count").textContent = addressBookList.length;
+    document.querySelector(".person-count").textContent = addressBookList.length;
     createInnerHTML();
     //localStorage.removeItem("edit-person");
 });
@@ -23,10 +23,8 @@ const createInnerHTML = () => {
     <th>Address</th>
     <th>Actions</th>
 </tr>`;
-    //if (addressBookList.length == 0) return;
+    if (addressBookList.length == 0) return;
     let innerHtml = `${headerHtml}`;
-    //let innerHtml = `${headerHtml}
-    //let addressBookList = createEmployeePayrollJson();
     for (const addressBookData of addressBookList) {
         innerHtml = `${innerHtml}
 
